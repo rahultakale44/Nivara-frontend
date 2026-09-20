@@ -1,0 +1,128 @@
+/* Input Component Styles */
+
+.nivara-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.nivara-input-label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  display: block;
+}
+
+.nivara-input-label--required::after {
+  content: ' *';
+  color: var(--color-danger);
+}
+
+.nivara-input,
+.nivara-textarea,
+.nivara-select {
+  width: 100%;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-base);
+  background-color: var(--color-bg-surface);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  transition: all var(--transition-fast);
+}
+
+.nivara-input {
+  height: 40px;
+  padding: 0 var(--space-3);
+}
+
+.nivara-textarea {
+  padding: var(--space-3);
+  resize: vertical;
+  min-height: 80px;
+}
+
+.nivara-select {
+  height: 40px;
+  padding: 0 var(--space-3);
+  cursor: pointer;
+}
+
+/* Focus State */
+.nivara-input:focus,
+.nivara-textarea:focus,
+.nivara-select:focus {
+  outline: none;
+  border-color: var(--color-brand-primary);
+  box-shadow: var(--focus-ring);
+}
+
+/* Error State */
+.nivara-input--error,
+.nivara-textarea--error,
+.nivara-select--error {
+  border-color: var(--color-danger);
+}
+
+.nivara-input--error:focus,
+.nivara-textarea--error:focus,
+.nivara-select--error:focus {
+  box-shadow: var(--focus-ring-danger);
+}
+
+/* Disabled State */
+.nivara-input:disabled,
+.nivara-textarea:disabled,
+.nivara-select:disabled {
+  background-color: var(--color-bg-muted);
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Error Message */
+.nivara-input-error {
+  font-size: var(--font-size-sm);
+  color: var(--color-danger);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+/* Helper Text */
+.nivara-input-helper {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+/* Icon Input Wrapper */
+.nivara-input-icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.nivara-input-icon {
+  position: absolute;
+  left: var(--space-3);
+  display: flex;
+  align-items: center;
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+.nivara-input-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.nivara-input--with-icon {
+  padding-left: var(--space-10);
+}
+
+/* Placeholder */
+.nivara-input::placeholder,
+.nivara-textarea::placeholder {
+  color: var(--color-text-disabled);
+}

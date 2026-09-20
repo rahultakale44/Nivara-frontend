@@ -1,0 +1,94 @@
+/* Loading Component Styles */
+
+.nivara-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-border-default);
+  border-top-color: var(--color-brand-primary);
+  border-radius: 50%;
+  animation: nivara-spin 0.8s linear infinite;
+}
+
+.nivara-spinner--sm {
+  width: 16px;
+  height: 16px;
+  border-width: 2px;
+}
+
+.nivara-spinner--md {
+  width: 24px;
+  height: 24px;
+  border-width: 2px;
+}
+
+.nivara-spinner--lg {
+  width: 32px;
+  height: 32px;
+  border-width: 3px;
+}
+
+@keyframes nivara-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Loading Container */
+.nivara-loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  padding: var(--space-12);
+  color: var(--color-text-secondary);
+}
+
+.nivara-loading-container__message {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Skeleton */
+.nivara-skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-bg-subtle) 25%,
+    var(--color-bg-muted) 50%,
+    var(--color-bg-subtle) 75%
+  );
+  background-size: 200% 100%;
+  animation: nivara-skeleton-wave 1.5s ease-in-out infinite;
+  border-radius: var(--radius-base);
+}
+
+@keyframes nivara-skeleton-wave {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.nivara-skeleton--text {
+  height: 16px;
+  width: 100%;
+}
+
+.nivara-skeleton--heading {
+  height: 24px;
+  width: 60%;
+}
+
+.nivara-skeleton--card {
+  height: 120px;
+  width: 100%;
+}
+
+.nivara-skeleton--circle {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}

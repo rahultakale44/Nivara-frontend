@@ -1,0 +1,46 @@
+/* Nivara Brand Component Styles */
+
+.nivara-brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.nivara-brand-wordmark {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-brand-primary);
+  letter-spacing: -0.025em;
+  line-height: 1;
+  margin: 0;
+}
+
+.nivara-brand-tagline {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* Compact Variant */
+.nivara-brand--compact .nivara-brand-wordmark {
+  font-size: var(--font-size-xl);
+}
+
+.nivara-brand--compact .nivara-brand-tagline {
+  font-size: 10px;
+}
+
+/* Horizontal Variant */
+.nivara-brand--horizontal {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.nivara-brand--horizontal .nivara-brand-tagline {
+  text-transform: none;
+  font-size: var(--font-size-sm);
+}

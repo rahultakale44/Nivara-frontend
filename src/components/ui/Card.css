@@ -1,0 +1,87 @@
+/* Card Component Styles */
+
+.nivara-card {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-fast);
+}
+
+/* Padding Variants */
+.nivara-card--padding-none {
+  padding: 0;
+}
+
+.nivara-card--padding-sm {
+  padding: var(--space-4);
+}
+
+.nivara-card--padding-default {
+  padding: var(--space-6);
+}
+
+.nivara-card--padding-lg {
+  padding: var(--space-8);
+}
+
+/* Variant Styles */
+.nivara-card--default {
+  box-shadow: var(--shadow-xs);
+}
+
+.nivara-card--elevated {
+  box-shadow: var(--shadow-sm);
+}
+
+.nivara-card--outlined {
+  box-shadow: none;
+  border-width: 1px;
+}
+
+/* Interactive State */
+.nivara-card--interactive {
+  cursor: pointer;
+  border: 1px solid var(--color-border-default);
+  background: var(--color-bg-surface);
+  text-align: left;
+  width: 100%;
+}
+
+.nivara-card--interactive:hover {
+  border-color: var(--color-brand-primary);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+
+.nivara-card--interactive:active {
+  transform: translateY(0);
+}
+
+/* Card Subcomponents */
+.nivara-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+}
+
+.nivara-card-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.nivara-card-content {
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+}
+
+.nivara-card-footer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border-default);
+}

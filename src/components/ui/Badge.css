@@ -1,0 +1,130 @@
+/* Badge Component Styles */
+
+.nivara-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-tight);
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+
+/* Size Variants */
+.nivara-badge--sm {
+  padding: 2px var(--space-2);
+  font-size: 11px;
+}
+
+.nivara-badge--md {
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--font-size-xs);
+}
+
+.nivara-badge--lg {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--font-size-sm);
+}
+
+/* Status Variants */
+.nivara-badge--pending {
+  background-color: var(--color-status-pending-bg);
+  color: #B45309;
+  border-color: var(--color-status-pending);
+}
+
+.nivara-badge--in-progress {
+  background-color: var(--color-status-in-progress-bg);
+  color: #1E40AF;
+  border-color: var(--color-status-in-progress);
+}
+
+.nivara-badge--resolved {
+  background-color: var(--color-status-resolved-bg);
+  color: #047857;
+  border-color: var(--color-status-resolved);
+}
+
+.nivara-badge--rejected {
+  background-color: var(--color-status-rejected-bg);
+  color: #B91C1C;
+  border-color: var(--color-status-rejected);
+}
+
+/* Priority Variants */
+.nivara-badge--priority-low {
+  background-color: var(--color-priority-low-bg);
+  color: #047857;
+  border-color: var(--color-priority-low);
+}
+
+.nivara-badge--priority-medium {
+  background-color: var(--color-priority-medium-bg);
+  color: #B45309;
+  border-color: var(--color-priority-medium);
+}
+
+.nivara-badge--priority-high {
+  background-color: var(--color-priority-high-bg);
+  color: #C2410C;
+  border-color: var(--color-priority-high);
+}
+
+.nivara-badge--priority-urgent {
+  background-color: var(--color-priority-urgent-bg);
+  color: #B91C1C;
+  border-color: var(--color-priority-urgent);
+}
+
+/* Semantic Variants */
+.nivara-badge--success {
+  background-color: var(--color-success-bg);
+  color: #047857;
+  border-color: var(--color-success-border);
+}
+
+.nivara-badge--warning {
+  background-color: var(--color-warning-bg);
+  color: #B45309;
+  border-color: var(--color-warning-border);
+}
+
+.nivara-badge--danger {
+  background-color: var(--color-danger-bg);
+  color: #B91C1C;
+  border-color: var(--color-danger-border);
+}
+
+.nivara-badge--info {
+  background-color: var(--color-info-bg);
+  color: #1E40AF;
+  border-color: var(--color-info-border);
+}
+
+/* Neutral Variants */
+.nivara-badge--neutral {
+  background-color: var(--color-bg-subtle);
+  color: var(--color-text-secondary);
+  border-color: var(--color-border-default);
+}
+
+.nivara-badge--primary {
+  background-color: var(--color-brand-primary-light);
+  color: var(--color-brand-primary);
+  border-color: var(--color-brand-primary);
+}
+
+/* Badge Icon */
+.nivara-badge__icon {
+  display: flex;
+  align-items: center;
+}
+
+.nivara-badge__icon svg {
+  width: 12px;
+  height: 12px;
+}

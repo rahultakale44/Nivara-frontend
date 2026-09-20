@@ -1,0 +1,40 @@
+/* AppShell Layout Styles */
+
+.nivara-app-shell {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--color-bg-primary);
+}
+
+.nivara-app-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: var(--sidebar-width);
+  min-width: 0;
+}
+
+.nivara-app-content {
+  flex: 1;
+  padding: var(--space-6);
+  max-width: var(--content-max-width);
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .nivara-app-main {
+    margin-left: 0;
+  }
+  
+  .nivara-app-content {
+    padding: var(--space-4);
+  }
+}
+
+@media (max-width: 768px) {
+  .nivara-app-content {
+    padding: var(--space-3);
+  }
+}

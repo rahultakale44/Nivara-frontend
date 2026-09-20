@@ -1,215 +1,256 @@
-# CampusCare – Smart Campus Complaint Management System
+# CampusCare Frontend
 
-## Overview
+React-based frontend for the CampusCare campus complaint management system. Provides separate interfaces for students to submit and track complaints, and administrators to manage complaint status and view analytics.
 
-CampusCare is a full-stack complaint management platform designed to streamline the reporting, tracking, and resolution of campus-related issues. The system enables students to submit complaints with supporting evidence while providing administrators with a centralized dashboard to manage and resolve reported issues efficiently.
-
-The platform improves communication between students and campus administration by offering a transparent complaint lifecycle from submission to resolution.
+This is the frontend component of a full-stack portfolio/interview project.
 
 ---
 
-## Key Features
+## Features
 
-### Student Portal
+### Student Features
+- **Registration & Login** - Create account and authenticate
+- **Dashboard** - View personal complaint statistics and recent complaints
+- **Create Complaints** - Submit complaints with title, description, category, and optional image
+- **Track Complaints** - View status of submitted complaints (PENDING, IN_PROGRESS, RESOLVED)
+- **Image Upload** - Attach images to complaints
 
-* Secure student registration and login using JWT authentication.
-* Submit complaints with title, description, category, and proof image.
-* Track complaint status in real-time.
-* View personal complaint history.
-* Receive administrator updates and notes.
-* Responsive and modern user interface.
+### Admin Features
+- **Admin Dashboard** - Overview of all complaints with statistics
+- **Complaint Management** - View all complaints across all students
+- **Status Updates** - Update complaint status with admin notes
+- **Analytics** - Visual charts and metrics using Recharts
 
-### Administrator Portal
-
-* Secure administrator authentication.
-* View all complaints from a centralized dashboard.
-* Update complaint status:
-
-  * Pending
-  * In Progress
-  * Resolved
-  * Rejected
-* Add administrative notes and feedback.
-* Monitor complaint statistics through visual charts.
-* Export complaint reports as CSV files.
-* Filter and search complaints efficiently.
-
-### Complaint Categories
-
-* Infrastructure
-* Network & WiFi
-* Hostel
-* Library
-* Classroom
-* Laboratory
-* Water Supply
-* Electricity
-* Other Campus Facilities
+### UI/UX
+- **Responsive Design** - Mobile-friendly interface
+- **Toast Notifications** - Real-time feedback using react-toastify
+- **React Router** - Client-side routing with protected routes
+- **Lucide Icons** - Modern icon library
+- **Loading States** - User feedback during API operations
 
 ---
 
 ## Technology Stack
 
-### Frontend
-
-* React.js
-* React Router DOM
-* Axios
-* React Toastify
-* Recharts
-* Lucide React Icons
-* CSS3
-
-### Backend
-
-* Java
-* Spring Boot
-* Spring Security
-* JWT Authentication
-* Spring Data JPA
-* Hibernate
-
-### Database
-
-* MySQL
-
-### Deployment
-
-* Frontend: Vercel
-* Backend: Render
-* Database: Railway MySQL
+- **React 19.2.6** - UI library
+- **React Router DOM 7.17.0** - Client-side routing
+- **Axios 1.17.0** - HTTP client for API communication
+- **Recharts 3.8.1** - Data visualization and charts
+- **React Toastify 11.1.0** - Toast notifications
+- **Lucide React 1.17.0** - Icon library
+- **Vite 8.0.12** - Build tool and dev server
+- **ESLint 10.3.0** - Code linting
 
 ---
 
-## System Architecture
+## Prerequisites
 
-Student
-↓
-React Frontend
-↓
-REST APIs
-↓
-Spring Boot Backend
-↓
-MySQL Database
-
-Administrator
-↓
-Admin Dashboard
-↓
-Complaint Management & Analytics
+- **Node.js** - v18 or higher recommended
+- **npm** - Comes with Node.js
+- **Backend API** - CampusCare backend must be running (see backend repository)
 
 ---
 
-## Authentication & Authorization
+## Environment Configuration
 
-CampusCare implements Role-Based Access Control (RBAC).
+Create a `.env` file or update API base URL in `src/api/axios.js`:
 
-### Student
+```javascript
+// Default configuration points to:
+const API_BASE_URL = 'http://localhost:8080';
+```
 
-* Register account
-* Login
-* Create complaints
-* View personal complaints
-
-### Admin
-
-* Access admin dashboard
-* Manage all complaints
-* Update status
-* Add notes
-* Export reports
-
-Authentication is secured using JWT tokens and Spring Security.
+For production deployment (Vercel), update this to your backend API URL.
 
 ---
 
-## Complaint Workflow
+## Installation
 
-1. Student submits complaint.
-2. Complaint is stored in MySQL database.
-3. Administrator reviews complaint.
-4. Status updated to:
-
-   * Pending
-   * In Progress
-   * Resolved
-   * Rejected
-5. Student can track updates from dashboard.
+```bash
+# Install dependencies
+npm install
+```
 
 ---
 
-## Dashboard Analytics
+## Development
 
-The administrator dashboard provides:
+```bash
+# Start development server
+npm run dev
+```
 
-* Total Complaints
-* Pending Complaints
-* Complaints In Progress
-* Resolved Complaints
-* Rejected Complaints
-* Status Distribution Pie Chart
-* Complaint Category Analysis
+The application will be available at `http://localhost:5173`
 
----
-
-## Sample Use Cases
-
-### Projector Malfunction During Examination
-
-Students report a projector failure affecting an examination session. The administrator reviews the issue, assigns maintenance personnel, and updates the complaint after resolution.
-
-### Campus WiFi Connectivity Issue
-
-Students report network outages in academic blocks. The IT support team investigates and restores connectivity.
-
-### Hostel Water Leakage
-
-Students report continuous water leakage in hostel facilities. Maintenance staff inspect and repair the damaged pipeline.
+**Note:** Ensure the backend API is running at `http://localhost:8080`
 
 ---
 
-## Future Enhancements
+## Build
 
-* Email Notifications
-* SMS Alerts
-* Complaint Prioritization
-* AI-Based Complaint Categorization
-* Real-Time Chat Support
-* Mobile Application
-* Cloud Image Storage (AWS S3 / Cloudinary)
-* Multi-Campus Support
+```bash
+# Build for production
+npm run build
+```
+
+Production files will be generated in the `dist/` directory.
 
 ---
 
-## Learning Outcomes
+## Preview Production Build
 
-This project demonstrates practical implementation of:
+```bash
+# Preview the production build locally
+npm run preview
+```
 
-* Full-Stack Web Development
-* REST API Development
-* JWT Authentication
-* Role-Based Access Control
-* Database Design
-* Spring Security
-* Frontend-Backend Integration
-* Deployment and Cloud Hosting
+---
+
+## Linting
+
+```bash
+# Run ESLint
+npm run lint
+```
+
+---
+
+## Project Structure
+
+```
+campuscare-frontend/
+├── public/
+│   ├── favicon.svg
+│   └── icons.svg
+├── src/
+│   ├── api/
+│   │   └── axios.js          # Axios configuration
+│   ├── assets/               # Static assets
+│   ├── components/           # React components
+│   ├── pages/                # Page components
+│   │   ├── Login.jsx
+│   │   ├── Register.jsx
+│   │   ├── StudentDashboard.jsx
+│   │   ├── AdminDashboard.jsx
+│   │   └── ...
+│   ├── App.jsx               # Main app component
+│   ├── App.css               # App styles
+│   ├── Home.jsx              # Landing page
+│   ├── main.jsx              # Entry point
+│   └── index.css             # Global styles
+├── .gitignore
+├── eslint.config.js
+├── index.html
+├── package.json
+├── vercel.json               # Vercel deployment config
+├── vite.config.js
+└── README.md
+```
+
+---
+
+## Key Routes
+
+| Route | Component | Access | Description |
+|-------|-----------|--------|-------------|
+| `/` | Home | Public | Landing page |
+| `/login` | Login | Public | User login |
+| `/register` | Register | Public | Student registration |
+| `/student-dashboard` | StudentDashboard | STUDENT | Student complaint management |
+| `/admin-dashboard` | AdminDashboard | ADMIN | Admin complaint management |
+
+---
+
+## API Integration
+
+The frontend communicates with the backend REST API using Axios.
+
+**Authentication Flow:**
+1. User logs in via `/api/auth/login`
+2. Backend returns JWT token and user role
+3. Token stored in localStorage
+4. Token included in `Authorization: Bearer <token>` header for subsequent requests
+
+**Protected Routes:**
+- Student routes require STUDENT role
+- Admin routes require ADMIN role
+- Role verified by backend on each API request
+
+---
+
+## Deployment
+
+### Vercel (Current Deployment Platform)
+
+The project includes `vercel.json` configuration for single-page application routing.
+
+```bash
+# Install Vercel CLI
+npm i -g vercel
+
+# Deploy
+vercel
+```
+
+**Environment Variables on Vercel:**
+- Update API base URL to point to your deployed backend
+- Configure in `src/api/axios.js` or use Vercel environment variables
+
+---
+
+## Backend Dependency
+
+This frontend requires the CampusCare backend API to be running. See the backend repository for setup instructions:
+
+**Backend Requirements:**
+- Running on `http://localhost:8080` (development)
+- JWT authentication configured
+- CORS enabled for frontend origin
+- All API endpoints operational
+
+---
+
+## Features Not Included
+
+- Automated tests (no test suite configured)
+- TypeScript (uses JavaScript)
+- State management library (uses React state and localStorage)
+- Advanced caching strategies
+- Offline support / PWA features
+- Internationalization (i18n)
+
+---
+
+## Browser Compatibility
+
+Modern browsers supporting ES6+ features:
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+---
+
+## Contributing
+
+This is a personal portfolio project. If you find issues or have suggestions, feel free to open an issue or submit a pull request.
+
+---
+
+## License
+
+This is a personal portfolio project created for educational and interview purposes.
+
+---
+
+## Related Repositories
+
+- **Backend:** CampusCare Backend (Spring Boot REST API)
 
 ---
 
 ## Author
 
-Rahul Takale
+Rahul - Final Year Computer Science Student
 
-B.Tech Computer Science Engineering
-MIT Art, Design & Technology University, Pune
-
-LinkedIn: [www.linkedin.com/in/rahul-takale-798714272](http://www.linkedin.com/in/rahul-takale-798714272)
-
-GitHub: github.com/rahultakale44
-
----
-
-## Project Status
-
-Completed and deployed as a functional Full-Stack Campus Complaint Management System.
+**Project Purpose:** Portfolio/Interview Project demonstrating full-stack development with React, REST API integration, authentication, and role-based UI.

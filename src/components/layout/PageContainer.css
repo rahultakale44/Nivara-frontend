@@ -1,0 +1,51 @@
+/* PageContainer Component Styles */
+
+.nivara-page-container {
+  width: 100%;
+}
+
+.nivara-page-header {
+  margin-bottom: var(--space-8);
+}
+
+.nivara-page-title {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-2);
+}
+
+.nivara-page-description {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  margin: 0;
+  line-height: var(--line-height-relaxed);
+}
+
+.nivara-page-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.nivara-page-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nivara-page-title {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .nivara-page-header {
+    margin-bottom: var(--space-6);
+  }
+  
+  .nivara-page-content {
+    gap: var(--space-4);
+  }
+}

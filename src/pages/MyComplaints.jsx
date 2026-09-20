@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import {
-  ArrowLeft,
-  RefreshCw,
-  Search,
-  MessageSquareText,
-  Image,
-} from "lucide-react";
+import { Search, RefreshCw, MapPin, Image, MessageSquareText } from "lucide-react";
 import { toast } from "react-toastify";
+import AppShell from "../components/layout/AppShell";
+import { PageContainer, PageHeader, PageContent } from "../components/layout/PageContainer";
+import Card from "../components/ui/Card";
+import Button from "../components/ui/Button";
+import Input, { Select } from "../components/ui/Input";
+import { StatusBadge, PriorityBadge } from "../components/ui/Badge";
+import Loading from "../components/ui/Loading";
+import EmptyState from "../components/ui/EmptyState";
 import api from "../api/api";
 
 function MyComplaints() {
@@ -26,16 +27,10 @@ function MyComplaints() {
   };
 
   const fetchMyComplaints = async () => {
-    const token = localStorage.getItem("token");
-
     try {
       setLoading(true);
 
-      const response = await api.get("/complaints/my", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await api.get("/complaints/my");
 
       setComplaints(response.data);
     } catch (error) {
@@ -67,103 +62,203 @@ function MyComplaints() {
   });
 
   return (
-    <div className="list-page">
-      <div className="list-container">
-        <div className="list-header">
-          <Link to="/student-dashboard" className="back-link">
-            <ArrowLeft size={18} /> Back to Dashboard
-          </Link>
+    <AppShell role="STUDENT">
+      <PageContainer>
+        <PageHeader
+          title="My Issues"
+          description="Track and monitor your submitted campus issues"
+          action={
+            <Button
+              variant="outline"
+              icon={<RefreshCw size={16} />}
+              onClick={fetchMyComplaints}
+              size="sm"
+            >
+              Refresh
+            </Button>
+          }
+        />
 
-          <button onClick={fetchMyComplaints}>
-            <RefreshCw size={16} /> Refresh
-          </button>
-        </div>
+        <PageContent>
+          <Card variant="outlined" padding="default" style={{ marginBottom: 'var(--space-6)' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 'var(--space-4)', alignItems: 'end' }}>
+              <Input
+                icon={<Search size={18} />}
+                type="text"
+                placeholder="Search by title, description, or category..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              
+              <Select
+                value={statusFilter}
+                onChange={(e) => setStatusFilter(e.target.value)}
+              >
+                <option value="ALL">All Status</option>
+                <option value="PENDING">Pending</option>
+                <option value="IN_PROGRESS">In Progress</option>
+                <option value="RESOLVED">Resolved</option>
+                <option value="REJECTED">Rejected</option>
+              </Select>
+            </div>
+          </Card>
 
-        <h1>My Complaints</h1>
-        <p>Track, search and monitor your submitted campus complaints.</p>
-
-        <div className="student-filters">
-          <div className="search-box">
-            <Search size={18} />
-            <input
-              type="text"
-              placeholder="Search complaints..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+          {loading ? (
+            <Loading message="Loading your issues..." />
+          ) : filteredComplaints.length === 0 ? (
+            <EmptyState
+              title="No issues found"
+              description={
+                searchTerm || statusFilter !== "ALL"
+                  ? "Try adjusting your search or filter"
+                  : "You haven't reported any issues yet"
+              }
             />
-          </div>
+          ) : (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
+              {filteredComplaints.map((complaint) => (
+                <Card key={complaint.id} variant="outlined" padding="lg">
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 'var(--space-6)', flexWrap: 'wrap' }}>
+                    <div style={{ flex: 1, minWidth: '300px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', marginBottom: 'var(--space-2)', flexWrap: 'wrap' }}>
+                        <h3 style={{ 
+                          fontSize: 'var(--font-size-xl)', 
+                          fontWeight: 'var(--font-weight-semibold)', 
+                          margin: 0,
+                          color: 'var(--color-text-primary)'
+                        }}>
+                          {complaint.title}
+                        </h3>
+                        <StatusBadge status={complaint.status} />
+                      </div>
 
-          <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
-            <option value="ALL">All Status</option>
-            <option value="PENDING">Pending</option>
-            <option value="IN_PROGRESS">In Progress</option>
-            <option value="RESOLVED">Resolved</option>
-            <option value="REJECTED">Rejected</option>
-          </select>
-        </div>
+                      <div style={{ 
+                        display: 'flex', 
+                        alignItems: 'center', 
+                        gap: 'var(--space-4)', 
+                        flexWrap: 'wrap',
+                        fontSize: 'var(--font-size-xs)',
+                        color: 'var(--color-text-muted)',
+                        marginBottom: 'var(--space-3)'
+                      }}>
+                        <span>{getTicketNo(complaint.id)}</span>
+                        <span>•</span>
+                        <span>{formatDate(complaint.createdAt)}</span>
+                        {complaint.priority && (
+                          <>
+                            <span>•</span>
+                            <PriorityBadge priority={complaint.priority} />
+                          </>
+                        )}
+                      </div>
 
-        {loading ? (
-          <div className="loading-box">
-            <div className="loader"></div>
-            <p>Loading your complaints...</p>
-          </div>
-        ) : (
-          <div className="complaint-table">
-            {filteredComplaints.length === 0 ? (
-              <div className="empty-box">No matching complaints found.</div>
-            ) : (
-              filteredComplaints.map((complaint) => (
-                <div className="complaint-row" key={complaint.id}>
-                  <div>
-                    <h3>{complaint.title}</h3>
+                      <p style={{ 
+                        fontSize: 'var(--font-size-base)', 
+                        color: 'var(--color-text-secondary)', 
+                        marginBottom: 'var(--space-3)',
+                        lineHeight: 'var(--line-height-relaxed)'
+                      }}>
+                        {complaint.description}
+                      </p>
 
-                    <div className="ticket-meta">
-                      <span>{getTicketNo(complaint.id)}</span>
-                      <span>{formatDate(complaint.createdAt)}</span>
+                      <div style={{ 
+                        display: 'inline-block',
+                        padding: 'var(--space-1) var(--space-3)',
+                        backgroundColor: 'var(--color-bg-subtle)',
+                        borderRadius: 'var(--radius-sm)',
+                        fontSize: 'var(--font-size-sm)',
+                        color: 'var(--color-text-secondary)',
+                        marginBottom: 'var(--space-3)'
+                      }}>
+                        {complaint.category}
+                      </div>
+
+                      {complaint.location && (
+                        <div style={{ 
+                          display: 'flex', 
+                          alignItems: 'center', 
+                          gap: 'var(--space-2)',
+                          fontSize: 'var(--font-size-sm)',
+                          color: 'var(--color-text-muted)',
+                          marginBottom: 'var(--space-3)'
+                        }}>
+                          <MapPin size={14} />
+                          <span>{complaint.location.displayName}</span>
+                        </div>
+                      )}
+
+                      {complaint.imageUrl && (
+                        <div style={{ marginTop: 'var(--space-4)' }}>
+                          <a
+                            href={complaint.imageUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            style={{
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: 'var(--space-2)',
+                              color: 'var(--color-brand-primary)',
+                              textDecoration: 'none',
+                              fontSize: 'var(--font-size-sm)',
+                              fontWeight: 'var(--font-weight-medium)',
+                              marginBottom: 'var(--space-3)'
+                            }}
+                          >
+                            <Image size={16} /> View Uploaded Image
+                          </a>
+                          <img
+                            src={complaint.imageUrl}
+                            alt="Issue Proof"
+                            style={{
+                              width: '100%',
+                              maxWidth: '400px',
+                              borderRadius: 'var(--radius-base)',
+                              border: '1px solid var(--color-border-default)'
+                            }}
+                          />
+                        </div>
+                      )}
+
+                      {complaint.adminNote && (
+                        <div style={{
+                          display: 'flex',
+                          gap: 'var(--space-3)',
+                          padding: 'var(--space-4)',
+                          backgroundColor: 'var(--color-info-bg)',
+                          border: '1px solid var(--color-info-border)',
+                          borderRadius: 'var(--radius-base)',
+                          marginTop: 'var(--space-4)'
+                        }}>
+                          <MessageSquareText size={18} color="var(--color-info)" style={{ flexShrink: 0 }} />
+                          <div>
+                            <div style={{ 
+                              fontSize: 'var(--font-size-sm)', 
+                              fontWeight: 'var(--font-weight-semibold)',
+                              color: 'var(--color-text-primary)',
+                              marginBottom: 'var(--space-1)'
+                            }}>
+                              Admin Note
+                            </div>
+                            <p style={{ 
+                              fontSize: 'var(--font-size-sm)', 
+                              color: 'var(--color-text-secondary)',
+                              margin: 0,
+                              lineHeight: 'var(--line-height-relaxed)'
+                            }}>
+                              {complaint.adminNote}
+                            </p>
+                          </div>
+                        </div>
+                      )}
                     </div>
-
-                    <p>{complaint.description}</p>
-                    <span>{complaint.category}</span>
-
-                    {complaint.imageUrl && (
-                      <div className="proof-image-section">
-                        <a
-                          href={complaint.imageUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="view-image-btn"
-                        >
-                          <Image size={16} /> View Uploaded Image
-                        </a>
-
-                        <img
-                          src={complaint.imageUrl}
-                          alt="Complaint Proof"
-                          className="complaint-proof-image"
-                        />
-                      </div>
-                    )}
-
-                    {complaint.adminNote && (
-                      <div className="student-note-box">
-                        <MessageSquareText size={16} />
-                        <p>
-                          <b>Admin Note:</b> {complaint.adminNote}
-                        </p>
-                      </div>
-                    )}
                   </div>
-
-                  <strong className={`status ${complaint.status.toLowerCase()}`}>
-                    {complaint.status}
-                  </strong>
-                </div>
-              ))
-            )}
-          </div>
-        )}
-      </div>
-    </div>
+                </Card>
+              ))}
+            </div>
+          )}
+        </PageContent>
+      </PageContainer>
+    </AppShell>
   );
 }
 

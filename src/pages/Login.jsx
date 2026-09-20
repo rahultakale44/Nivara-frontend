@@ -1,6 +1,9 @@
 import { toast } from "react-toastify";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import Button from "../components/ui/Button";
+import Input from "../components/ui/Input";
+import "../styles/auth.css";
 import api from "../api/api";
 
 function Login() {
@@ -53,48 +56,66 @@ function Login() {
   };
 
   return (
-    <div className="auth-page">
-      <Link to="/admin-login" className="floating-admin-btn">
-        Administrator Access
+    <div className="auth-container">
+      <Link to="/admin-login" className="auth-switch-link">
+        Administrator Access →
       </Link>
 
       <div className="auth-card">
-        <h1>Student Login</h1>
-        <p>Login or create your CampusCare student account</p>
+        <div className="auth-header">
+          <div className="auth-logo">
+            <div className="auth-logo-icon">N</div>
+            <div className="auth-brand-name">Nivara</div>
+          </div>
+          <h1 className="auth-title">Student Login</h1>
+          <p className="auth-subtitle">Access your MIT ADT campus support account</p>
+        </div>
 
-        <div className="login-type-buttons">
-          <button type="button" onClick={handleStudentLogin}>
-            Demo Student Login
+        <div className="auth-demo-buttons">
+          <button type="button" onClick={handleStudentLogin} className="auth-demo-button">
+            Fill Demo Student Credentials
           </button>
         </div>
 
-        <form onSubmit={handleLogin} autoComplete="off">
-          <input
+        <div className="auth-divider">
+          <span>or continue with email</span>
+        </div>
+
+        <form onSubmit={handleLogin} className="auth-form">
+          <Input
+            label="Email Address"
             type="email"
-            placeholder="Enter email"
+            placeholder="student@mituniversity.edu.in"
             value={email}
-            autoComplete="off"
             onChange={(e) => setEmail(e.target.value)}
             required
+            autoComplete="email"
           />
 
-          <input
+          <Input
+            label="Password"
             type="password"
-            placeholder="Enter password"
+            placeholder="Enter your password"
             value={password}
-            autoComplete="new-password"
             onChange={(e) => setPassword(e.target.value)}
             required
+            autoComplete="current-password"
           />
 
-          <button type="submit" disabled={loading}>
+          <Button
+            type="submit"
+            variant="primary"
+            disabled={loading}
+            loading={loading}
+            fullWidth
+          >
             {loading ? "Logging In..." : "Login"}
-          </button>
+          </Button>
         </form>
 
-        <span>
+        <div className="auth-footer">
           New student? <Link to="/register">Create account</Link>
-        </span>
+        </div>
       </div>
     </div>
   );

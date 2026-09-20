@@ -1,0 +1,146 @@
+/* Button Component Styles */
+
+.nivara-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  border: 1px solid transparent;
+  border-radius: var(--radius-base);
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-tight);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+}
+
+/* Sizes */
+.nivara-button--sm {
+  height: 32px;
+  padding: 0 var(--space-3);
+  font-size: var(--font-size-sm);
+}
+
+.nivara-button--md {
+  height: 40px;
+  padding: 0 var(--space-4);
+  font-size: var(--font-size-base);
+}
+
+.nivara-button--lg {
+  height: 48px;
+  padding: 0 var(--space-6);
+  font-size: var(--font-size-md);
+}
+
+/* Primary Variant */
+.nivara-button--primary {
+  background-color: var(--color-brand-primary);
+  color: var(--color-text-inverse);
+  border-color: var(--color-brand-primary);
+}
+
+.nivara-button--primary:hover:not(:disabled) {
+  background-color: var(--color-brand-primary-hover);
+  border-color: var(--color-brand-primary-hover);
+}
+
+.nivara-button--primary:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+/* Secondary Variant */
+.nivara-button--secondary {
+  background-color: var(--color-brand-secondary);
+  color: var(--color-text-inverse);
+  border-color: var(--color-brand-secondary);
+}
+
+.nivara-button--secondary:hover:not(:disabled) {
+  background-color: var(--color-brand-secondary-hover);
+  border-color: var(--color-brand-secondary-hover);
+}
+
+/* Outline Variant */
+.nivara-button--outline {
+  background-color: var(--color-bg-surface);
+  color: var(--color-brand-primary);
+  border-color: var(--color-border-default);
+}
+
+.nivara-button--outline:hover:not(:disabled) {
+  background-color: var(--color-bg-subtle);
+  border-color: var(--color-brand-primary);
+}
+
+/* Ghost Variant */
+.nivara-button--ghost {
+  background-color: transparent;
+  color: var(--color-text-secondary);
+  border-color: transparent;
+}
+
+.nivara-button--ghost:hover:not(:disabled) {
+  background-color: var(--color-bg-subtle);
+  color: var(--color-text-primary);
+}
+
+/* Danger Variant */
+.nivara-button--danger {
+  background-color: var(--color-danger);
+  color: var(--color-text-inverse);
+  border-color: var(--color-danger);
+}
+
+.nivara-button--danger:hover:not(:disabled) {
+  background-color: #DC2626;
+  border-color: #DC2626;
+}
+
+/* Disabled State */
+.nivara-button:disabled,
+.nivara-button--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Loading State */
+.nivara-button--loading {
+  pointer-events: none;
+}
+
+.nivara-button__spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Full Width */
+.nivara-button--full-width {
+  width: 100%;
+}
+
+/* Icon */
+.nivara-button__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nivara-button__icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.nivara-button--sm .nivara-button__icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.nivara-button--lg .nivara-button__icon svg {
+  width: 18px;
+  height: 18px;
+}
