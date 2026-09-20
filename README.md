@@ -1,4 +1,4 @@
-# CampusCare Frontend
+# Nivara Frontend
 
 React-based frontend for the CampusCare campus complaint management system. Provides separate interfaces for students to submit and track complaints, and administrators to manage complaint status and view analytics.
 
