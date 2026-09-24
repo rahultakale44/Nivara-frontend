@@ -1,256 +1,299 @@
 # Nivara Frontend
 
-React-based frontend for the CampusCare campus complaint management system. Provides separate interfaces for students to submit and track complaints, and administrators to manage complaint status and view analytics.
+> MIT ADT Campus Support - Professional Campus Operations Platform
 
-This is the frontend component of a full-stack portfolio/interview project.
+A modern, professional React-based frontend application for campus infrastructure management and complaint tracking at MIT ADT University.
 
----
+## Overview
 
-## Features
+Nivara Frontend provides an intuitive, enterprise-grade interface for students and administrators to manage campus maintenance requests, track complaint resolution, and monitor facility operations. Built with React and modern web technologies, it delivers a seamless user experience across devices.
 
-### Student Features
-- **Registration & Login** - Create account and authenticate
-- **Dashboard** - View personal complaint statistics and recent complaints
-- **Create Complaints** - Submit complaints with title, description, category, and optional image
-- **Track Complaints** - View status of submitted complaints (PENDING, IN_PROGRESS, RESOLVED)
-- **Image Upload** - Attach images to complaints
+## Key Features
 
-### Admin Features
-- **Admin Dashboard** - Overview of all complaints with statistics
-- **Complaint Management** - View all complaints across all students
-- **Status Updates** - Update complaint status with admin notes
-- **Analytics** - Visual charts and metrics using Recharts
+### For Students
+- **Complaint Management**: Submit, track, and manage campus infrastructure complaints
+- **Location-Based Reporting**: Associate complaints with specific campus locations (building, floor, wing, room)
+- **Priority Selection**: Set complaint priority levels (LOW, MEDIUM, HIGH, URGENT)
+- **Image Upload**: Attach photos to complaints for better documentation
+- **Real-Time Status Tracking**: Monitor complaint resolution progress
+- **Personal Dashboard**: View complaint statistics and history
 
-### UI/UX
-- **Responsive Design** - Mobile-friendly interface
-- **Toast Notifications** - Real-time feedback using react-toastify
-- **React Router** - Client-side routing with protected routes
-- **Lucide Icons** - Modern icon library
-- **Loading States** - User feedback during API operations
+### For Administrators
+- **Admin Dashboard**: Comprehensive overview with statistics and analytics
+- **Complaint Management**: Review, update status, and resolve complaints
+- **Location Management**: Create and manage campus locations
+- **Status Visualization**: Charts and graphs for complaint analytics
+- **User Activity Monitoring**: Track complaint submissions and resolutions
 
----
+### UI/UX Features
+- **Professional Design System**: Consistent MIT ADT purple branding (#7C3AED)
+- **Responsive Layout**: Mobile-first design that works on all devices
+- **Dark Mode Ready**: Built with design tokens for easy theming
+- **Role-Based Navigation**: Dynamic sidebar navigation based on user role
+- **Loading States**: Skeleton screens and spinners for better UX
+- **Error Handling**: User-friendly error messages with toast notifications
+- **Empty States**: Informative placeholders when no data is available
 
-## Technology Stack
+## 🛠️ Technology Stack
 
-- **React 19.2.6** - UI library
-- **React Router DOM 7.17.0** - Client-side routing
-- **Axios 1.17.0** - HTTP client for API communication
-- **Recharts 3.8.1** - Data visualization and charts
-- **React Toastify 11.1.0** - Toast notifications
-- **Lucide React 1.17.0** - Icon library
-- **Vite 8.0.12** - Build tool and dev server
-- **ESLint 10.3.0** - Code linting
+### Core Framework
+- **React**: 19.2.6
+- **React DOM**: 19.2.6
+- **Vite**: 8.0.12 (Build tool and dev server)
 
----
+### Routing & State
+- **React Router DOM**: 7.17.0
+
+### HTTP & API
+- **Axios**: 1.17.0 (with JWT interceptors)
+
+### UI & Visualization
+- **Recharts**: 3.8.1 (Charts and analytics)
+- **Lucide React**: 1.17.0 (Icon system)
+- **React Toastify**: 11.1.0 (Toast notifications)
+
+### Development Tools
+- **ESLint**: 9.27.0 (Code quality)
+  - `@eslint/js`: 9.27.0
+  - `eslint-plugin-react`: 7.37.2
+  - `eslint-plugin-react-hooks`: 5.0.0
+  - `eslint-plugin-react-refresh`: 0.4.16
+- **Globals**: 16.0.0 (Global variables)
+
+### Build Configuration
+- **Node.js**: Version not pinned in repository (recommend Node.js 18+ for Vite 8.x)
+- **npm**: Version not pinned in repository
 
 ## Prerequisites
 
-- **Node.js** - v18 or higher recommended
-- **npm** - Comes with Node.js
-- **Backend API** - CampusCare backend must be running (see backend repository)
+Before running this project, ensure you have:
 
----
+- Node.js 18.x or higher (recommended for Vite 8.x compatibility)
+- npm or yarn package manager
+- Access to Nivara Backend API (running on port 8090 by default)
 
-## Environment Configuration
+## Getting Started
 
-Create a `.env` file or update API base URL in `src/api/axios.js`:
-
-```javascript
-// Default configuration points to:
-const API_BASE_URL = 'http://localhost:8080';
-```
-
-For production deployment (Vercel), update this to your backend API URL.
-
----
-
-## Installation
+### 1. Clone the Repository
 
 ```bash
-# Install dependencies
+git clone https://github.com/rahultakale44/Nivara-frontend.git
+cd Nivara-frontend
+```
+
+### 2. Install Dependencies
+
+```bash
 npm install
 ```
 
----
+### 3. Environment Configuration
 
-## Development
+Create a `.env` file in the root directory:
+
+```env
+VITE_API_BASE_URL=http://localhost:8090
+```
+
+**Configuration Options:**
+- `VITE_API_BASE_URL`: Backend API base URL (default: `http://localhost:8090`)
+
+**Important**: Ensure the backend server is running before starting the frontend.
+
+### 4. Run Development Server
 
 ```bash
-# Start development server
 npm run dev
 ```
 
-The application will be available at `http://localhost:5173`
+The application will be available at `http://localhost:5173` (or the port shown in terminal).
 
-**Note:** Ensure the backend API is running at `http://localhost:8080`
-
----
-
-## Build
+### 5. Build for Production
 
 ```bash
-# Build for production
 npm run build
 ```
 
-Production files will be generated in the `dist/` directory.
+Build output will be in the `dist/` directory.
 
----
-
-## Preview Production Build
+### 6. Preview Production Build
 
 ```bash
-# Preview the production build locally
 npm run preview
 ```
 
----
-
-## Linting
-
-```bash
-# Run ESLint
-npm run lint
-```
-
----
-
-## Project Structure
+## 📁 Project Structure
 
 ```
-campuscare-frontend/
-├── public/
-│   ├── favicon.svg
-│   └── icons.svg
+Nivara-frontend/
+├── public/                 # Static assets
 ├── src/
 │   ├── api/
-│   │   └── axios.js          # Axios configuration
-│   ├── assets/               # Static assets
-│   ├── components/           # React components
-│   ├── pages/                # Page components
+│   │   └── api.js         # Axios instance with JWT interceptors
+│   ├── assets/            # Images, logos, and static files
+│   │   ├── nivara-logo-new.png
+│   │   ├── mit-adt-logo.png
+│   │   └── mit-adt-campus.jpg
+│   ├── components/
+│   │   ├── branding/      # Nivara brand components
+│   │   │   └── NivaraBrand.jsx
+│   │   ├── layout/        # Layout components
+│   │   │   ├── AppShell.jsx
+│   │   │   ├── Header.jsx
+│   │   │   ├── Sidebar.jsx
+│   │   │   └── PageContainer.jsx
+│   │   └── ui/            # Reusable UI components
+│   │       ├── Button.jsx
+│   │       ├── Input.jsx
+│   │       ├── Card.jsx
+│   │       ├── StatusBadge.jsx
+│   │       ├── PriorityBadge.jsx
+│   │       ├── Modal.jsx
+│   │       └── ...
+│   ├── pages/             # Route pages
 │   │   ├── Login.jsx
 │   │   ├── Register.jsx
+│   │   ├── AdminLogin.jsx
 │   │   ├── StudentDashboard.jsx
 │   │   ├── AdminDashboard.jsx
-│   │   └── ...
-│   ├── App.jsx               # Main app component
-│   ├── App.css               # App styles
-│   ├── Home.jsx              # Landing page
-│   ├── main.jsx              # Entry point
-│   └── index.css             # Global styles
+│   │   ├── CreateComplaint.jsx
+│   │   └── MyComplaints.jsx
+│   ├── styles/            # Global styles and design tokens
+│   │   ├── tokens.css     # Design system tokens
+│   │   ├── base.css       # Base styles
+│   │   ├── landing.css    # Homepage styles
+│   │   └── auth.css       # Authentication page styles
+│   ├── App.jsx            # Main app component with routing
+│   ├── Home.jsx           # Landing page
+│   └── main.jsx           # Application entry point
+├── .env.example           # Environment variable template
 ├── .gitignore
-├── eslint.config.js
-├── index.html
-├── package.json
-├── vercel.json               # Vercel deployment config
-├── vite.config.js
+├── eslint.config.js       # ESLint configuration
+├── index.html             # HTML entry point
+├── package.json           # Dependencies and scripts
+├── vite.config.js         # Vite configuration
 └── README.md
 ```
 
----
+## Design System
 
-## Key Routes
+### Color Palette (MIT ADT Branding)
+- **Primary**: `#7C3AED` (MIT ADT Purple)
+- **Primary Hover**: `#6D28D9`
+- **Primary Light**: `#A78BFA`
+- **Backgrounds**: White, gray-50, gray-100
+- **Text**: Gray-900 (primary), Gray-600 (secondary)
 
-| Route | Component | Access | Description |
-|-------|-----------|--------|-------------|
-| `/` | Home | Public | Landing page |
-| `/login` | Login | Public | User login |
-| `/register` | Register | Public | Student registration |
-| `/student-dashboard` | StudentDashboard | STUDENT | Student complaint management |
-| `/admin-dashboard` | AdminDashboard | ADMIN | Admin complaint management |
+### Typography
+- **Font Family**: Inter (system fallback: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto)
+- **Font Sizes**: 12px - 36px (defined in design tokens)
+- **Font Weights**: 400, 500, 600, 700
 
----
+### Components
+All UI components follow the design system defined in `src/styles/tokens.css` with:
+- Consistent spacing (4px base unit)
+- Standardized shadows
+- Smooth transitions
+- Accessible color contrast
+
+## Authentication
+
+### JWT Token Management
+- Tokens stored in `localStorage`
+- Automatic token injection via Axios interceptors
+- 401/403 responses trigger automatic logout
+- Protected routes require valid authentication
+
+### User Roles
+- **STUDENT**: Access to complaint submission and tracking
+- **ADMIN**: Full access to dashboard, complaint management, and location management
 
 ## API Integration
 
-The frontend communicates with the backend REST API using Axios.
+### Base Configuration
+API client configured in `src/api/api.js`:
+- Base URL from environment variable
+- JWT token interceptors
+- Automatic error handling
+- Response/request transformation
 
-**Authentication Flow:**
-1. User logs in via `/api/auth/login`
-2. Backend returns JWT token and user role
-3. Token stored in localStorage
-4. Token included in `Authorization: Bearer <token>` header for subsequent requests
+### Key Endpoints
+- `POST /auth/register` - User registration
+- `POST /auth/login` - User login
+- `GET /api/complaints` - Get all complaints
+- `POST /api/complaints` - Create complaint
+- `PUT /api/complaints/{id}/status` - Update complaint status
+- `GET /api/locations` - Get all locations
+- `POST /api/locations` - Create location (admin only)
 
-**Protected Routes:**
-- Student routes require STUDENT role
-- Admin routes require ADMIN role
-- Role verified by backend on each API request
+Full API documentation available in [Nivara Backend Repository](https://github.com/rahultakale44/Nivara-backend).
 
----
+## Responsive Design
+
+The application is fully responsive with breakpoints:
+- **Mobile**: < 640px
+- **Tablet**: 640px - 1024px
+- **Desktop**: > 1024px
+
+Sidebar collapses to hamburger menu on mobile devices.
+
+## Code Quality
+
+### Linting
+```bash
+npm run lint
+```
+
+ESLint configuration includes:
+- React best practices
+- React Hooks rules
+- React Refresh for HMR
 
 ## Deployment
 
-### Vercel (Current Deployment Platform)
-
-The project includes `vercel.json` configuration for single-page application routing.
-
+### Production Build
 ```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Deploy
-vercel
+npm run build
 ```
 
-**Environment Variables on Vercel:**
-- Update API base URL to point to your deployed backend
-- Configure in `src/api/axios.js` or use Vercel environment variables
+### Deployment Platforms
+The built application (`dist/` folder) can be deployed to:
+- **Vercel**: Zero-config deployment for Vite apps
+- **Netlify**: Automatic builds from Git
+- **GitHub Pages**: Static hosting
+- **AWS S3 + CloudFront**: Enterprise hosting
+- **Any static hosting service**
 
----
-
-## Backend Dependency
-
-This frontend requires the CampusCare backend API to be running. See the backend repository for setup instructions:
-
-**Backend Requirements:**
-- Running on `http://localhost:8080` (development)
-- JWT authentication configured
-- CORS enabled for frontend origin
-- All API endpoints operational
-
----
-
-## Features Not Included
-
-- Automated tests (no test suite configured)
-- TypeScript (uses JavaScript)
-- State management library (uses React state and localStorage)
-- Advanced caching strategies
-- Offline support / PWA features
-- Internationalization (i18n)
-
----
-
-## Browser Compatibility
-
-Modern browsers supporting ES6+ features:
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-
----
+### Environment Variables for Production
+Ensure `VITE_API_BASE_URL` points to your production backend API.
 
 ## Contributing
 
-This is a personal portfolio project. If you find issues or have suggestions, feel free to open an issue or submit a pull request.
-
----
+This is a university project. For contributions:
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request
 
 ## License
 
-This is a personal portfolio project created for educational and interview purposes.
+This project is developed for MIT ADT University.
 
----
+## Authors
+
+- **Rahul Takale** - [GitHub](https://github.com/rahultakale44)
 
 ## Related Repositories
 
-- **Backend:** CampusCare Backend (Spring Boot REST API)
+- **Backend**: [Nivara Backend](https://github.com/rahultakale44/Nivara-backend)
+
+## Support
+
+For issues or questions:
+- Open an issue on GitHub
+- Contact the development team
 
 ---
 
-## Author
-
-Rahul - Final Year Computer Science Student
-
-**Project Purpose:** Portfolio/Interview Project demonstrating full-stack development with React, REST API integration, authentication, and role-based UI.
+**Nivara** - Excellence in Campus Infrastructure Support
